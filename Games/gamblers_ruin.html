@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gambler's Ruin Game</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    #container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+    }
+    #graph-container {
+        flex: 2;
+        margin-right: 20px;
+    }
+    #side-container {
+        flex: 1;
+        max-width: 200px;
+    }
+    h2 {
+        color: #555;
+        margin-top: 0;
+    }
+    input[type="number"], button {
+        margin-bottom: 10px;
+    }
+    button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+    button:disabled {
+        background-color: #ccc;
+        cursor: not-allowed;
+    }
+    .balance {
+        margin-bottom: 10px;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <div id="graph-container">
+        <h2>Gambler's Ruin</h2>
+        <label for="startAmount">Starting Amount:</label>
+        <input type="number" id="startAmount" min="1" value="100"><br>
+        <label for="betAmount">Bet Amount:</label>
+        <input type="number" id="betAmount" min="1"><br>
+        <button id="placeBetButton" onclick="placeBet()" disabled>Place Bet</button>
+        <button onclick="resetGamblersRuin()">Reset</button>
+        <div id="graph"></div>
+    </div>
+    <div id="side-container">
+        <h2>Remaining Balance</h2>
+        <div id="balanceDisplay" class="balance"></div>
+        <div id="highScoreDisplay" class="balance"></div>
+    </div>
+</div>
+
+<script>
+    let startAmount = document.getElementById('startAmount');
+    let betAmount = document.getElementById('betAmount');
+    let placeBetButton = document.getElementById('placeBetButton');
+    let graph = document.getElementById('graph');
+    let balanceDisplay = document.getElementById('balanceDisplay');
+    let highScoreDisplay = document.getElementById('highScoreDisplay');
+
+    let balance = parseInt(startAmount.value);
+    let highScore = 0;
+    let bets = [];
+
+    betAmount.addEventListener('input', () => {
+        placeBetButton.disabled = betAmount.value <= 0;
+    });
+
+    function placeBet() {
+        let bet = parseInt(betAmount.value);
+        if (bet > balance) {
+            alert('Bet amount cannot exceed balance!');
+            return;
+        }
+        let win = Math.random() < 0.5;
+        if (win) {
+            balance += bet;
+        } else {
+            balance -= bet;
+        }
+        bets.push(balance);
+        if (balance > highScore) {
+            highScore = balance;
+        }
+
+        updateGraph();
+        updateBalanceDisplay();
+        updateHighScoreDisplay();
+        if (balance === 0) {
+            alert('Game Over! You ran out of money.');
+        }
+    }
+
+    function resetGamblersRuin() {
+        balance = parseInt(startAmount.value);
+        bets = [];
+        updateGraph();
+        updateBalanceDisplay();
+        updateHighScoreDisplay(); // Add this line to update the high score display
+    }
+
+    function updateGraph() {
+        graph.innerHTML = '';
+        let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+        svg.setAttribute('width', '100%');
+        svg.setAttribute('height', '300');
+        svg.setAttribute('viewBox', '0 0 800 300');
+
+        let maxX = bets.length > 0 ? bets.length - 1 : 1;
+        let maxY = Math.max(...bets, balance, highScore) + 10;
+
+        for (let i = 0; i < bets.length; i++) {
+            let x = (i / maxX) * 800;
+            let y = 300 - (bets[i] / maxY) * 300;
+            let circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+            circle.setAttribute('cx', x);
+            circle.setAttribute('cy', y);
+            circle.setAttribute('r', '5');
+            circle.setAttribute('fill', 'blue');
+            svg.appendChild(circle);
+        }
+
+        let initialY = 300 - (parseInt(startAmount.value) / maxY) * 300;
+        let line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        line.setAttribute('x1', '0');
+        line.setAttribute('y1', initialY);
+        line.setAttribute('x2', '800');
+        line.setAttribute('y2', initialY);
+        line.setAttribute('stroke', 'red');
+        line.setAttribute('stroke-width', '2');
+        svg.appendChild(line);
+
+        let highScoreY = 300 - (highScore / maxY) * 300;
+        let dashedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        dashedLine.setAttribute('x1', '0');
+        dashedLine.setAttribute('y1', highScoreY);
+        dashedLine.setAttribute('x2', '800');
+        dashedLine.setAttribute('y2', highScoreY);
+        dashedLine.setAttribute('stroke', '#555');
+        dashedLine.setAttribute('stroke-dasharray', '5,5');
+        svg.appendChild(dashedLine);
+
+        let zeroLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        zeroLine.setAttribute('x1', '0');
+        zeroLine.setAttribute('y1', '300');
+        zeroLine.setAttribute('x2', '800');
+        zeroLine.setAttribute('y2', '300');
+        zeroLine.setAttribute('stroke', 'black');
+        zeroLine.setAttribute('stroke-width', '1');
+        svg.appendChild(zeroLine);
+
+        let initialLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        initialLabel.setAttribute('x', '10');
+        initialLabel.setAttribute('y', initialY - 10);
+        initialLabel.textContent = 'Initial Amount: $' + startAmount.value;
+        initialLabel.setAttribute('fill', '#555');
+        svg.appendChild(initialLabel);
+
+        let zeroLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        zeroLabel.setAttribute('x', '10');
+        zeroLabel.setAttribute('y', '290');
+        zeroLabel.textContent = 'Zero Balance';
+        zeroLabel.setAttribute('fill', '#555');
+        svg.appendChild(zeroLabel);
+
+        graph.appendChild(svg);
+    }
+
+    function updateBalanceDisplay() {
+        balanceDisplay.textContent = '$' + balance;
+    }
+
+    function updateHighScoreDisplay() {
+        highScoreDisplay.textContent = 'High Score: $' + highScore;
+    }
+
+    updateBalanceDisplay();
+    updateHighScoreDisplay();
+</script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Game of Life</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    #container {
+        max-width: 1000px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+    }
+    #grid {
+        display: grid;
+        grid-template-columns: repeat(50, 10px);
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    .cell {
+        width: 10px;
+        height: 10px;
+        border: 1px solid #ccc;
+        background-color: #fff;
+    }
+    .alive {
+        background-color: #000;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h2>The Game of Life</h2>
+    <div id="grid"></div>
+    <button onclick="randomCells()">Random Cells</button>
+    <button id="runPauseButton" onclick="toggleGame()">Run Game</button>
+    <button onclick="resetGameOfLife()">Reset</button>
+</div>
+
+<script>
+    const numRows = 30;
+    const numCols = 50;
+    let grid = createGrid(numRows, numCols);
+    let intervalId = null;
+    let isRunning = false;
+
+    function createGrid(rows, cols) {
+        let grid = [];
+        for (let i = 0; i < rows; i++) {
+            grid[i] = [];
+            for (let j = 0; j < cols; j++) {
+                grid[i][j] = 0; // Dead cell
+            }
+        }
+        return grid;
+    }
+
+    function updateGrid() {
+        let gridContainer = document.getElementById('grid');
+        gridContainer.innerHTML = '';
+        for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+                let cell = document.createElement('div');
+                cell.classList.add('cell');
+                if (grid[i][j] === 1) {
+                    cell.classList.add('alive');
+                }
+                cell.addEventListener('click', () => toggleCell(i, j));
+                gridContainer.appendChild(cell);
+            }
+        }
+    }
+
+    function toggleCell(row, col) {
+        grid[row][col] = grid[row][col] === 0 ? 1 : 0;
+        updateGrid();
+    }
+
+    function randomCells() {
+        for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+                grid[i][j] = Math.random() < 0.25 ? 1 : 0; // Probability a cell is alive is 1/4 (25%)
+            }
+        }
+        updateGrid();
+    }
+
+    function toggleGame() {
+        if (isRunning) {
+            pauseGame();
+        } else {
+            startGame();
+        }
+    }
+
+    function startGame() {
+        if (intervalId) {
+            clearInterval(intervalId);
+        }
+        intervalId = setInterval(runGame, 100);
+        document.getElementById('runPauseButton').innerText = 'Pause Game';
+        isRunning = true;
+    }
+
+    function pauseGame() {
+        clearInterval(intervalId);
+        intervalId = null;
+        document.getElementById('runPauseButton').innerText = 'Run Game';
+        isRunning = false;
+    }
+
+    function runGame() {
+        let newGrid = createGrid(numRows, numCols);
+        for (let i = 0; i < numRows; i++) {
+            for (let j = 0; j < numCols; j++) {
+                let neighbors = countNeighbors(i, j);
+                if (grid[i][j] === 1) {
+                    if (neighbors < 2 || neighbors > 3) {
+                        newGrid[i][j] = 0; // Cell dies due to underpopulation or overpopulation
+                    } else {
+                        newGrid[i][j] = 1; // Cell survives
+                    }
+                } else {
+                    if (neighbors === 3) {
+                        newGrid[i][j] = 1; // Cell is born
+                    }
+                }
+            }
+        }
+        grid = newGrid;
+        updateGrid();
+    }
+
+    function countNeighbors(row, col) {
+        let count = 0;
+        for (let i = -1; i <= 1; i++) {
+            for (let j = -1; j <= 1; j++) {
+                if (!(i === 0 && j === 0)) {
+                    let neighborRow = row + i;
+                    let neighborCol = col + j;
+                    if (neighborRow >= 0 && neighborRow < numRows && neighborCol >= 0 && neighborCol < numCols) {
+                        count += grid[neighborRow][neighborCol];
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    function resetGameOfLife() {
+        clearInterval(intervalId);
+        intervalId = null;
+        isRunning = false;
+        document.getElementById('runPauseButton').innerText = 'Run Game';
+        grid = createGrid(numRows, numCols);
+        updateGrid();
+    }
+
+    updateGrid();
+</script>
+</body>
+</html>

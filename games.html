@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T. R. Sumner</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+    .container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .left {
+      width: 30%;
+      text-align: left;
+    }
+
+    .right {
+      width: 70%;
+      text-align: left;
+    }
+
+    .middle {
+      text-align: center;
+      width: 100%;
+      margin-top: 20px;
+    }
+  </style>
+
+</head>
+
+<body>
+    <header>
+        <h1>Timothy R. Sumner</h1>
+        <nav>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="portfolio.html">Portfolio</a></li>
+            <li><a href="personal_life.html">Personal Life</a></li>
+            <li><a href="games.html">Games</a></li>  
+            <li class="right-item">
+              <a href="mailto:sumner.tim@outlook.com?subject=Hello Tim!" title="Email">
+                <img src="Photos/email.png" width="25", height="25">
+              </a>
+              <a href="https://www.linkedin.com/in/timothy-sumner/" title="LinkedIn"> 
+                <img src="Photos/linkedin.png" width="20", height="20">
+              </a>
+              <a href="https://medium.com/@tim.sumner" title="Medium"> 
+                <img src="Photos/medium.png" width="22", height="22">
+              </a>
+              <a href="https://github.com/sumner-tim" title="GitHub"> 
+                <img src="Photos/github.png" width="20", height="20">
+              </a>
+              <a href="https://www.kaggle.com/timothysumner" title="Kaggle"> 
+                <img src="Photos/kaggle.png" width="48", height="20">
+              </a>
+              <a href="https://www.researchgate.net/profile/Timothy-Sumner-2/research" title="ResearchGate"> 
+                <img src="Photos/researchgate.png" width="20", height="20">
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </header>
+<main>
+
+<h2 style="font-size: 32px; font-family: Verdana, serif; margin-left: 20px;">Gambler's Ruin</h2>
+<div class="container">
+    <p class="left" style="margin-left: 20px; font-size: 18px;">
+        <br>
+        This initial game illustrates the classic Gambler's Ruin problem, a concept first introduced in 1656 by Blaise Pascal in a letter to Pierre Fermat. For a detailed history of this problem, see 
+        <a href="https://koreascience.kr/article/JAKO201311637859390.pdf", title="Song and Song (2013)", target="_blank">Song and Song (2013)</a>. 
+        Basically, Gambler A and Opponent B each start with a specified number of units. The game continues until one player loses their entire initial stake. The question is: what is the probability 
+        that the gambler will either lose all their money or win all of the opponent's money, assuming an unlimited number of plays are possible?
+        <br><br>
+        In the variation you can play here, the game is completely fair—the probability of winning each round is 50%. However, your opponent has an unlimited initial stake, which is often the case when 
+        playing against large institutions like casinos.
+        <br><br>
+        The outcome of this variation is that you are guaranteed to eventually lose if you continue playing indefinitely, even though the game is fair. A similar result is observed 
+        when any species has birth and death rates that are in balance. When this occurs, it can be proven that extinction is certain. Here, you can set your initial stake and choose 
+        how much you want to wager each round. Try to see how much you can win before losing.  
+    </p>
+
+    <!-- Gambler's Ruin -->
+    <div class="right" id="gamblers-ruin-container">
+        <div id="graph-container">
+            <label for="startAmount">Starting Amount:</label>
+            <input type="number" id="startAmount" min="1" value="100"><br>
+            <label for="GRbetAmount">Bet Amount:</label>
+            <input type="number" id="GRbetAmount" min="1"><br>
+            <button id="placeBetButton" onclick="GamblersRuin.placeBet()" disabled>Place Bet</button>
+            <button onclick="GamblersRuin.resetGamblersRuin()">Reset</button>
+            <div id="graph"></div>
+        </div>
+        <div id="side-container">
+            <h2>Remaining Balance</h2>
+            <div id="balanceDisplay" class="balance"></div>
+            <div id="highScoreDisplay" class="balance"></div>
+        </div>
+    </div>
+</div>
+
+<p class="middle">
+    <b>Lesson</b>: Frequently, individuals primarily consider the likelihood of success when weighing risks. However, it's crucial to recognize that understanding your 
+    tolerance for losses can be equally, if not more, vital in decision-making.
+</p>
+
+<br><hr><br><br>
+
+<h2 style="font-size: 32px; font-family: Verdana, serif; margin-left: 20px;">The Game of Life</h2>
+<div class="container">
+    <p class="left" style="margin-left: 20px; font-size: 18px;">
+        <br><br><br><br>
+        The Game of Life, devised by mathematician John Conway in <a href="https://web.stanford.edu/class/sts145/Library/life.pdf", title="Martin Gardner (1970)", target="_blank">1970</a>
+        , is a cellular automaton that simulates the evolution of simple organisms. 
+        Played on an infinite grid of square cells, each cell can be alive or dead. 
+        Despite its simple rules, the Game of Life produces complex and often surprising patterns, illustrating how complexity can emerge from simplicity.
+        <br><br>
+        To play, you start with an initial configuration of live and dead cells. 
+        Each cell's state in the next generation is determined by its eight neighbors: a live cell with two or three live neighbors survives, while all others die. 
+        A dead cell with exactly three live neighbors becomes alive. 
+        These rules are applied simultaneously to all cells, and the process is repeated for as many generations as desired, revealing the intricate dynamics of the system.
+        
+    </p>
+    
+    <!-- Game of Life Section -->
+    <div class="right" id="game-of-life-container">
+        <div id="grid"></div>
+        <button onclick="GameOfLife.randomCells()">Random Cells</button>
+        <button id="runPauseButton" onclick="GameOfLife.toggleGame()">Run Game</button>
+        <button onclick="GameOfLife.resetGameOfLife()">Reset</button>
+    </div>
+</div>
+
+<p class="middle">
+    <b>Lesson</b>: This system was <a href="https://ieeexplore.ieee.org/document/5999906" title="Paul Rendell (2011)">proven</a> 
+    to be unpredictable, indicating that not everything can be predicted even when the initial conditions are known.
+
+<br><hr><br><br>
+
+<h2 style="font-size: 32px; font-family: Verdana, serif; margin-left: 20px;">Random Walk</h2>
+<div class="container">
+    <p class="left" style="margin-left: 20px; font-size: 18px;">
+        <br><br>
+        The random walk model is not only easy to grasp but also widely applicable in real-world scenarios. Essentially, it posits that the next point is 
+        determined by adding a random value to the current point, resulting in each new value being both random and influenced solely by the preceding one. 
+        <br><br>
+        The interactive game here offers a personalized twist on this model by introducing a maximum limit, ensuring that the random walk remains bounded. 
+        It's worth noting that this version holds significance as it has been proven
+        that when a random walk is constrained from above, it will eventually reach zero. Here, you have the freedom to choose your initial starting point, 
+        adjust the probability of moving upward, and set the maximum value threshold.
+    </p>
+
+    <!-- Random Walk Section -->
+    <div class="right" id="random-walk-container">
+        <div>
+            <label for="startingPoint">Starting Point:</label>
+            <input type="number" id="startingPoint" value="50">
+        </div>
+        <div>
+            <label for="moveProbability">Move Probability (%):</label>
+            <input type="number" id="moveProbability" value="50" min="0" max="100">
+        </div>
+        <div>
+            <label for="ceilingPoint">Ceiling Point:</label>
+            <input type="number" id="ceilingPoint" value="100" min="1">
+        </div>
+        <canvas id="randomWalkChart" width="800" height="400"></canvas>
+        <button onclick="RandomWalk.startRandomWalk()">Start Random Walk</button>
+        <button onclick="RandomWalk.resetRandomWalk()">Reset</button>
+    </div>
+</div>
+
+<p class="middle">
+    <b>Lesson</b>: Anything bound by limits and subject to fluctuation, such as the current human population or the value of stocks, will inevitably hit zero.
+</p>
+
+<br><hr><br><br>
+
+<h2 style="font-size: 32px; font-family: Verdana, serif; margin-left: 20px;">Craps Game with Sicherman's Dice</h2>
+<div class="container">
+    <p class="left" style="margin-left: 20px; font-size: 18px;">
+        Craps is one of the oldest games in modern casinos, with dice games being among the earliest forms of gambling. While there are numerous ways to bet at a craps table, 
+        the standard gameplay proceeds as follows: 
+        <br><br>
+        First, an initial wager is placed, and two dice are rolled. If the dice show a 7 or 11, the player wins and is paid out at 1 to 1. 
+        If a 2, 3, or 12 is rolled, the player loses, and the initial wager is forfeited. If any other number is rolled, that number becomes the "point." The player then continues 
+        to roll the dice until either the point number is rolled again, resulting in a win, or a 7 is rolled, resulting in a loss. Once a point is established, the player cannot 
+        alter or reclaim the initial wager.
+        <br><br>
+        This game, like all dice games, is played with two standard dice. However, to mix things up, you have the unique opportunity to play with Sicherman's Dice—an 
+        experience you won't find in a casino. The famous 
+        <a href="https://www.scientificamerican.com/article/mathematical-games-1978-02/", title="Mathematical Games, February 1978", target="_blank">Sicherman dice puzzle</a>
+        poses the question: Is it possible to number the faces of two cubes in a completely 
+        different way from standard dice, while maintaining the same probabilities as standard dice in any dice game? The answer is yes. More specifically, there is 
+        exactly <i>one</i> other way to number the dice to achieve this result. These dice can be seen here.
+
+        
+    </p>
+
+    <!-- Craps -->
+    <div class="right" id="craps-container">
+        <div id="dice-container"></div>
+        <div id="balance">Balance: $100</div>
+        <div id="outcome"></div>
+        <label for="CRbetAmount">Select Bet Amount:</label>
+        <select id="CRbetAmount">
+            <option value="5"> $5 </option>
+            <option value="10"> $10 </option>
+            <option value="25"> $25 </option>
+        </select>
+        <button onclick="Craps.rollDice()">Roll Dice</button>
+        <button onclick="Craps.resetGame()">Reset</button>
+    </div>
+</div>
+
+<p class="middle">
+    <b>Lesson</b>: No lesson this time. I just enjoy playing craps and I think the Sicherman dice puzzel is cool.
+</p>
+
+<br><br><br>
+
+<script>
+    (function GamblersRuin() {
+        let startAmount = document.getElementById('startAmount');
+        let GRbetAmount = document.getElementById('GRbetAmount');
+        let placeBetButton = document.getElementById('placeBetButton');
+        let graph = document.getElementById('graph');
+        let balanceDisplay = document.getElementById('balanceDisplay');
+        let highScoreDisplay = document.getElementById('highScoreDisplay');
+    
+        let balance = parseInt(startAmount.value);
+        let highScore = 0;
+        let bets = [];
+    
+        GRbetAmount.addEventListener('input', () => {
+            placeBetButton.disabled = GRbetAmount.value <= 0;
+        });
+    
+        function placeBet() {
+            let bet = parseInt(GRbetAmount.value);
+            if (bet > balance) {
+                alert('Bet amount cannot exceed balance!');
+                return;
+            }
+            let win = Math.random() < 0.5;
+            if (win) {
+                balance += bet;
+            } else {
+                balance -= bet;
+            }
+            bets.push(balance);
+            if (balance > highScore) {
+                highScore = balance;
+            }
+    
+            updateGraph();
+            updateBalanceDisplay();
+            updateHighScoreDisplay();
+            if (balance === 0) {
+                alert('Game Over! You ran out of money.');
+            }
+        }
+    
+        function resetGamblersRuin() {
+            balance = parseInt(startAmount.value);
+            bets = [];
+            updateGraph();
+            updateBalanceDisplay();
+            updateHighScoreDisplay(); // Add this line to update the high score display
+        }
+    
+        function updateGraph() {
+            graph.innerHTML = '';
+            let svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+            svg.setAttribute('width', '100%');
+            svg.setAttribute('height', '300');
+            svg.setAttribute('viewBox', '0 0 800 300');
+    
+            let maxX = bets.length > 0 ? bets.length - 1 : 1;
+            let maxY = Math.max(...bets, balance, highScore) + 10;
+    
+            for (let i = 0; i < bets.length; i++) {
+                let x = (i / maxX) * 800;
+                let y = 300 - (bets[i] / maxY) * 300;
+                let circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+                circle.setAttribute('r', '5');
+                circle.setAttribute('fill', 'blue');
+                svg.appendChild(circle);
+            }
+    
+            let initialY = 300 - (parseInt(startAmount.value) / maxY) * 300;
+            let line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            line.setAttribute('x1', '0');
+            line.setAttribute('y1', initialY);
+            line.setAttribute('x2', '800');
+            line.setAttribute('y2', initialY);
+            line.setAttribute('stroke', 'red');
+            line.setAttribute('stroke-width', '2');
+            svg.appendChild(line);
+    
+            let highScoreY = 300 - (highScore / maxY) * 300;
+            let dashedLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            dashedLine.setAttribute('x1', '0');
+            dashedLine.setAttribute('y1', highScoreY);
+            dashedLine.setAttribute('x2', '800');
+            dashedLine.setAttribute('y2', highScoreY);
+            dashedLine.setAttribute('stroke', '#555');
+            dashedLine.setAttribute('stroke-dasharray', '5,5');
+            svg.appendChild(dashedLine);
+    
+            let zeroLine = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+            zeroLine.setAttribute('x1', '0');
+            zeroLine.setAttribute('y1', '300');
+            zeroLine.setAttribute('x2', '800');
+            zeroLine.setAttribute('y2', '300');
+            zeroLine.setAttribute('stroke', 'black');
+            zeroLine.setAttribute('stroke-width', '1');
+            svg.appendChild(zeroLine);
+    
+            let initialLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            initialLabel.setAttribute('x', '10');
+            initialLabel.setAttribute('y', initialY - 10);
+            initialLabel.textContent = 'Initial Amount: $' + startAmount.value;
+            initialLabel.setAttribute('fill', '#555');
+            svg.appendChild(initialLabel);
+    
+            let zeroLabel = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+            zeroLabel.setAttribute('x', '10');
+            zeroLabel.setAttribute('y', '290');
+            zeroLabel.textContent = 'Zero Balance';
+            zeroLabel.setAttribute('fill', '#555');
+            svg.appendChild(zeroLabel);
+    
+            graph.appendChild(svg);
+        }
+    
+        function updateBalanceDisplay() {
+            balanceDisplay.textContent = '$' + balance;
+        }
+    
+        function updateHighScoreDisplay() {
+            highScoreDisplay.textContent = 'High Score: $' + highScore;
+        }
+    
+        updateBalanceDisplay();
+        updateHighScoreDisplay();    
+
+        window.GamblersRuin = { placeBet, resetGamblersRuin };
+    })();
+
+    (function GameOfLife() {
+        const numRows = 30;
+        const numCols = 50;
+        let grid = createGrid(numRows, numCols);
+        let intervalId = null;
+        let isRunning = false;
+
+        function createGrid(rows, cols) {
+            let grid = [];
+            for (let i = 0; i < rows; i++) {
+                grid[i] = [];
+                for (let j = 0; j < cols; j++) {
+                    grid[i][j] = 0; // Dead cell
+                }
+            }
+            return grid;
+        }
+
+        function updateGrid() {
+            let gridContainer = document.getElementById('grid');
+            gridContainer.innerHTML = '';
+            for (let i = 0; i < numRows; i++) {
+                for (let j = 0; j < numCols; j++) {
+                    let cell = document.createElement('div');
+                    cell.classList.add('cell');
+                    if (grid[i][j] === 1) {
+                        cell.classList.add('alive');
+                    }
+                    cell.addEventListener('click', () => toggleCell(i, j));
+                    gridContainer.appendChild(cell);
+                }
+            }
+        }
+
+        function toggleCell(row, col) {
+            grid[row][col] = grid[row][col] === 0 ? 1 : 0;
+            updateGrid();
+        }
+
+        function randomCells() {
+            for (let i = 0; i < numRows; i++) {
+                for (let j = 0; j < numCols; j++) {
+                    grid[i][j] = Math.random() < 0.25 ? 1 : 0; // Probability a cell is alive is 1/4 (25%)
+                }
+            }
+            updateGrid();
+        }
+
+        function toggleGame() {
+            if (isRunning) {
+                pauseGame();
+            } else {
+                startGame();
+            }
+        }
+
+        function startGame() {
+            if (intervalId) {
+                clearInterval(intervalId);
+            }
+            intervalId = setInterval(runGame, 100);
+            document.getElementById('runPauseButton').innerText = 'Pause Game';
+            isRunning = true;
+        }
+
+        function pauseGame() {
+            clearInterval(intervalId);
+            intervalId = null;
+            document.getElementById('runPauseButton').innerText = 'Run Game';
+            isRunning = false;
+        }
+
+        function runGame() {
+            let newGrid = createGrid(numRows, numCols);
+            for (let i = 0; i < numRows; i++) {
+                for (let j = 0; j < numCols; j++) {
+                    let neighbors = countNeighbors(i, j);
+                    if (grid[i][j] === 1) {
+                        if (neighbors < 2 || neighbors > 3) {
+                            newGrid[i][j] = 0; // Cell dies due to underpopulation or overpopulation
+                        } else {
+                            newGrid[i][j] = 1; // Cell survives
+                        }
+                    } else {
+                        if (neighbors === 3) {
+                            newGrid[i][j] = 1; // Cell is born
+                        }
+                    }
+                }
+            }
+            grid = newGrid;
+            updateGrid();
+        }
+
+        function countNeighbors(row, col) {
+            let count = 0;
+            for (let i = -1; i <= 1; i++) {
+                for (let j = -1; j <= 1; j++) {
+                    if (!(i === 0 && j === 0)) {
+                        let neighborRow = row + i;
+                        let neighborCol = col + j;
+                        if (neighborRow >= 0 && neighborRow < numRows && neighborCol >= 0 && neighborCol < numCols) {
+                            count += grid[neighborRow][neighborCol];
+                        }
+                    }
+                }
+            }
+            return count;
+        }
+
+        function resetGameOfLife() {
+            clearInterval(intervalId);
+            intervalId = null;
+            isRunning = false;
+            document.getElementById('runPauseButton').innerText = 'Run Game';
+            grid = createGrid(numRows, numCols);
+            updateGrid();
+        }
+
+        window.GameOfLife = { randomCells, toggleGame, resetGameOfLife };
+        updateGrid();
+    })();
+
+    (function Craps() {
+        const canvas = document.getElementById('randomWalkChart').getContext('2d');
+        const startingPointInput = document.getElementById('startingPoint');
+        const moveProbabilityInput = document.getElementById('moveProbability');
+        const ceilingPointInput = document.getElementById('ceilingPoint');
+        let startingPoint = parseInt(startingPointInput.value);
+        let moveProbability = parseInt(moveProbabilityInput.value) / 100;
+        let ceilingPoint = parseInt(ceilingPointInput.value);
+        let currentPosition = startingPoint;
+        let intervalId;
+        let stepCount = 0;
+        let chartData = {
+            labels: [0],
+            datasets: [{
+                label: 'Random Walk',
+                borderColor: '#007bff',
+                data: [startingPoint],
+                fill: false
+            }]
+        };
+        let options = {
+            scales: {
+                x: {
+                    title: {
+                        display: true,
+                        text: 'Step'
+                    }
+                },
+                y: {
+                    title: {
+                        display: true,
+                        text: 'Position'
+                    },
+                    ticks: {
+                        callback: function(value) {
+                            return value === 0 ? '0' : value;
+                        }
+                    }
+                }
+            },
+            plugins: {
+                legend: { display: false },
+                annotation: {
+                    annotations: {
+                        line1: {
+                            type: 'line',
+                            mode: 'horizontal',
+                            scaleID: 'y',
+                            value: 0,
+                            borderColor: 'red',
+                            borderWidth: 1,
+                            label: {
+                                enabled: true,
+                                content: '0'
+                            }
+                        },
+                        line2: {
+                            type: 'line',
+                            mode: 'horizontal',
+                            scaleID: 'y',
+                            value: ceilingPoint,
+                            borderColor: 'black',
+                            borderWidth: 1,
+                            borderDash: [5],
+                            label: {
+                                enabled: true,
+                                content: 'Ceiling'
+                            }
+                        }
+                    }
+                }
+            }
+        };
+        let chart;
+
+        function startRandomWalk() {
+            clearInterval(intervalId);
+            startingPoint = parseInt(startingPointInput.value);
+            moveProbability = parseInt(moveProbabilityInput.value) / 100;
+            ceilingPoint = parseInt(ceilingPointInput.value);
+            currentPosition = startingPoint;
+            stepCount = 0;
+            chartData = {
+                labels: [0],
+                datasets: [{
+                    label: 'Random Walk',
+                    borderColor: '#007bff',
+                    data: [startingPoint],
+                    fill: false
+                }]
+            };
+            if (chart) chart.destroy();
+            chart = new Chart(canvas, {
+                type: 'line',
+                data: chartData,
+                options: options
+            });
+            intervalId = setInterval(takeStep, 100);
+        }
+
+        function takeStep() {
+            stepCount++;
+            const random = Math.random();
+            if (random < moveProbability) {
+                currentPosition++;
+            } else {
+                currentPosition--;
+            }
+            if (currentPosition >= ceilingPoint) {
+                currentPosition = Math.max(currentPosition - 1, 0);
+            }
+            chartData.labels.push(stepCount);
+            chartData.datasets[0].data.push(currentPosition);
+            chart.update();
+            if (stepCount > 500) {
+                chartData.labels.shift();
+                chartData.datasets[0].data.shift();
+            }
+            if (currentPosition === 0) {
+                clearInterval(intervalId);
+            }
+        }
+
+        function resetRandomWalk() {
+            clearInterval(intervalId);
+            startingPointInput.value = '50';
+            moveProbabilityInput.value = '50';
+            ceilingPointInput.value = '100';
+            startingPoint = parseInt(startingPointInput.value);
+            moveProbability = parseInt(moveProbabilityInput.value) / 100;
+            ceilingPoint = parseInt(ceilingPointInput.value);
+            currentPosition = startingPoint;
+            stepCount = 0;
+            chartData = {
+                labels: [0],
+                datasets: [{
+                    label: 'Random Walk',
+                    borderColor: '#007bff',
+                    data: [startingPoint],
+                    fill: false
+                }]
+            };
+            if (chart) chart.destroy();
+            chart = new Chart(canvas, {
+                type: 'line',
+                data: chartData,
+                options: options
+            });
+        }
+
+        window.RandomWalk = { startRandomWalk, resetRandomWalk };
+    })();
+
+    (function Craps() {
+        let balance = 100;
+        let point = 0;
+        let currentBet = 5;
+    
+        function rollSichermansDie() {
+            const die1Faces = [1, 2, 2, 3, 3, 4];
+            const die2Faces = [1, 3, 4, 5, 6, 8];
+            return {
+                die1: die1Faces[Math.floor(Math.random() * die1Faces.length)],
+                die2: die2Faces[Math.floor(Math.random() * die2Faces.length)]
+            };
+        }
+    
+        function rollDice() {
+            const { die1, die2 } = rollSichermansDie();
+            const sum = die1 + die2;
+    
+            document.getElementById('dice-container').innerHTML = `
+                <div class="die">${die1}</div>
+                <div class="die">${die2}</div>
+            `;
+    
+            let outcome = '';
+            if (point === 0) {
+                if (sum === 7 || sum === 11) {
+                    balance += currentBet;
+                    outcome = 'You rolled ' + sum + '. You win $' + currentBet + '!';
+                } else if (sum === 2, sum === 3, sum === 12) {
+                    balance -= currentBet;
+                    outcome = 'You rolled ' + sum + '. You lose $' + currentBet + '!';
+                } else {
+                    point = sum;
+                    outcome = 'Point is set to ' + point + '. Roll again.';
+                    document.getElementById('CRbetAmount').disabled = true; // Disable bet amount change
+                }
+            } else {
+                if (sum === point) {
+                    balance += currentBet;
+                    outcome = 'You rolled ' + sum + '. You win $' + currentBet + '!';
+                    point = 0;
+                    document.getElementById('CRbetAmount').disabled = false; // Enable bet amount change
+                } else if (sum === 7) {
+                    balance -= currentBet;
+                    outcome = 'You rolled ' + sum + '. You lose $' + currentBet + '!';
+                    point = 0;
+                    document.getElementById('CRbetAmount').disabled = false; // Enable bet amount change
+                } else {
+                    outcome = 'You rolled ' + sum + '. Roll again for point ' + point + '.';
+                }
+            }
+    
+            document.getElementById('balance').textContent = 'Balance: $' + balance;
+            document.getElementById('outcome').textContent = outcome;
+        }
+    
+        function resetGame() {
+            balance = 100;
+            point = 0;
+            document.getElementById('balance').textContent = 'Balance: $' + balance;
+            document.getElementById('outcome').textContent = '';
+            document.getElementById('CRbetAmount').disabled = false; // Enable bet amount change
+        }
+    
+        document.getElementById('CRbetAmount').addEventListener('change', function() {
+            currentBet = parseInt(this.value);
+        });    
+        window.Craps = { resetGame, rollDice };
+    })();
+
+</script>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  
+
+    
+  </main>
+  <footer>
+    <pr>
+        It is remarkable that a science which began with the consideration of games of chance should have become the most important object of human knowledge. <br>
+                        -P. S. Laplace in Théorie Analytique des Probabilitiés.
+    </pr>
+  </footer>
+</body>
+</html>

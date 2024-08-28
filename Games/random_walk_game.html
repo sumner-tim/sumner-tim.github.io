@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Walk Simulator</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        margin: 0;
+        padding: 20px;
+    }
+    #container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+    canvas {
+        margin: 20px auto;
+        display: block;
+    }
+    #starting-point,
+    #probability,
+    #ceiling {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    button {
+        display: block;
+        margin: 0 auto;
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    button:hover {
+        background-color: #0056b3;
+    }
+</style>
+</head>
+<body>
+<div id="container">
+    <h1>Random Walk Simulator</h1>
+    <div id="starting-point">
+        <label for="startingPoint">Starting Point:</label>
+        <input type="number" id="startingPoint" value="50">
+    </div>
+    <div id="probability">
+        <label for="moveProbability">Move Probability (%):</label>
+        <input type="number" id="moveProbability" value="50" min="0" max="100">
+    </div>
+    <div id="ceiling">
+        <label for="ceilingPoint">Ceiling Point:</label>
+        <input type="number" id="ceilingPoint" value="100" min="1">
+    </div>
+    <canvas id="randomWalkChart" width="800" height="400"></canvas>
+    <button onclick="startRandomWalk()">Start Random Walk</button>
+    <button onclick="resetRandomWalk()">Reset</button>
+</div>
+
+<script>
+    const canvas = document.getElementById('randomWalkChart').getContext('2d');
+    const startingPointInput = document.getElementById('startingPoint');
+    const moveProbabilityInput = document.getElementById('moveProbability');
+    const ceilingPointInput = document.getElementById('ceilingPoint');
+    let startingPoint = parseInt(startingPointInput.value);
+    let moveProbability = parseInt(moveProbabilityInput.value) / 100;
+    let ceilingPoint = parseInt(ceilingPointInput.value);
+    let currentPosition = startingPoint;
+    let intervalId;
+    let stepCount = 0;
+    let chartData = {
+        labels: [0],
+        datasets: [{
+            label: 'Random Walk',
+            borderColor: '#007bff',
+            data: [startingPoint],
+            fill: false
+        }]
+    };
+    let options = {
+        scales: {
+            x: {
+                title: {
+                    display: true,
+                    text: 'Step'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Position'
+                },
+                ticks: {
+                    callback: function(value, index, values) {
+                        return (value === 0) ? '0' : value;
+                    }
+                }
+            }
+        },
+        plugins: {
+            legend: {
+                display: false
+            },
+            annotation: {
+                annotations: {
+                    line1: {
+                        type: 'line',
+                        mode: 'horizontal',
+                        scaleID: 'y',
+                        value: 0,
+                        borderColor: 'red',
+                        borderWidth: 1,
+                        label: {
+                            enabled: true,
+                            content: '0'
+                        }
+                    },
+                    line2: {
+                        type: 'line',
+                        mode: 'horizontal',
+                        scaleID: 'y',
+                        value: ceilingPoint,
+                        borderColor: 'black',
+                        borderWidth: 1,
+                        borderDash: [5],
+                        label: {
+                            enabled: true,
+                            content: 'Ceiling'
+                        }
+                    }
+                }
+            }
+        }
+    };
+    let chart;
+
+    function startRandomWalk() {
+        clearInterval(intervalId);
+        startingPoint = parseInt(startingPointInput.value);
+        moveProbability = parseInt(moveProbabilityInput.value) / 100;
+        ceilingPoint = parseInt(ceilingPointInput.value);
+        currentPosition = startingPoint;
+        stepCount = 0;
+        chartData = {
+            labels: [0],
+            datasets: [{
+                label: 'Random Walk',
+                borderColor: '#007bff',
+                data: [startingPoint],
+                fill: false
+            }]
+        };
+        if (chart) chart.destroy();
+        chart = new Chart(canvas, {
+            type: 'line',
+            data: chartData,
+            options: options
+        });
+        intervalId = setInterval(takeStep, 100);
+    }
+
+    function takeStep() {
+        stepCount++;
+        const random = Math.random();
+        if (random < moveProbability) {
+            currentPosition++;
+        } else {
+            currentPosition--;
+        }
+        if (currentPosition >= ceilingPoint) {
+            currentPosition = Math.max(currentPosition - 1, 0);
+        }
+        chartData.labels.push(stepCount);
+        chartData.datasets[0].data.push(currentPosition);
+        chart.update();
+        if (stepCount > 500) {
+            chartData.labels.shift();
+            chartData.datasets[0].data.shift();
+        }
+        if (currentPosition === 0) {
+            clearInterval(intervalId);
+        }
+    }
+
+    function resetRandomWalk() {
+        clearInterval(intervalId);
+        startingPointInput.value = '50';
+        moveProbabilityInput.value = '50';
+        ceilingPointInput.value = '100';
+        startingPoint = parseInt(startingPointInput.value);
+        moveProbability = parseInt(moveProbabilityInput.value) / 100;
+        ceilingPoint = parseInt(ceilingPointInput.value);
+        currentPosition = startingPoint;
+        stepCount = 0;
+        chartData = {
+            labels: [0],
+            datasets: [{
+                label: 'Random Walk',
+                borderColor: '#007bff',
+                data: [startingPoint],
+                fill: false
+            }]
+        };
+        if (chart) chart.destroy();
+        chart = new Chart(canvas, {
+            type: 'line',
+            data: chartData,
+            options: options
+        });
+    }
+</script>
+</body>
+</html>
