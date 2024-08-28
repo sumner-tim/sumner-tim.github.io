@@ -1,42 +1,93 @@
-<html>
-    <head>
-        <title>
-            Timothy Sumner
-        </title>
-    </head>
-    <body>
-        <h1>
-            Home
-        </h1>
-            <p>
-                Welcome to my homepage. Here you will hopefully find everything you need to know about me. Currently I am a full-time data scientist, statistical 
-                researcher, and Ph.D. student, but in my free time I enjoy spending time with my wife and two kids, dancing, and training for triathlons. I try to live my 
-                life surrounded by the three <i>L</i>'s: <b>L</b>ove, <b>L</b>aughter, and <b>L</b>ots of studying.
-            <p>
-        <h1>
-            Portfolio
-        </h1>
-            <p>
-                <blockquote cite="2 Corinthians 4:18 NIV">
-                    You can, for example, never foretell what any one man will do, but you can say with precision what an average number will be up to. 
-                    Individuals vary, but percentages remain constant. So says the statistician. <br>
-                    -Sherlock Holmes in The Sign of Four
-                </blockquote>
-            </p>
-        <h1>
-            Research
-        </h1>
-            <p>
-                <blockquote cite="2 Corinthians 4:18 NIV">
-                    So we fix our eyes not on what is seen, but on what is unseen, since what is seen is temporary, but what is unseen is eternal. <br>
-                    -2 Corintheans 4:18 <abbr title="New International Version">NIV</abbr>
-                </blockquote>
-            </p>
-        <h1>
-            Personal Life
-        </h1>
-        <h1>
-            Games
-        </h1>
-    </body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>T. R. Sumner</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<style>
+  .content {
+    display: flex;
+    align-items: center;
+    gap: 50px; /* Adjust the gap as needed */
+  }
+  
+  .content img {
+    flex-shrink: 0; /* Prevent the image from shrinking */
+  }
+  
+  .content p {
+    flex-grow: 1; /* Allow the paragraph to grow and take the remaining space */
+    display: flex; /* Make the paragraph a flex container */
+    align-items: center; /* Center the text vertically */
+    max-width: 1200px; /* Set the maximum width for the paragraph */
+    margin: 0 auto; /* Center the paragraph within its container */
+    font-family: 'Helvetica', sans-serif; /* Change font type */
+    font-size: 20px; /* Change font size */
+  }
+</style>
+
+<body>
+  <header>
+    <h1>Timothy R. Sumner</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="personal_life.html">Personal Life</a></li>
+        <li><a href="games.html">Games</a></li>  
+        <li class="right-item">
+          <a href="mailto:sumner.tim@outlook.com?subject=Hello Tim!" title="Email">
+            <img src="Photos/email.png" width="25", height="25">
+          </a>
+          <a href="https://www.linkedin.com/in/timothy-sumner/" title="LinkedIn"> 
+            <img src="Photos/linkedin.png" width="20", height="20">
+          </a>
+          <a href="https://medium.com/@tim.sumner" title="Medium"> 
+            <img src="Photos/medium.png" width="22", height="22">
+          </a>
+          <a href="https://github.com/sumner-tim" title="GitHub"> 
+            <img src="Photos/github.png" width="20", height="20">
+          </a>
+          <a href="https://www.kaggle.com/timothysumner" title="Kaggle"> 
+            <img src="Photos/kaggle.png" width="48", height="20">
+          </a>
+          <a href="https://www.researchgate.net/profile/Timothy-Sumner-2/research" title="ResearchGate"> 
+            <img src="Photos/researchgate.png" width="20", height="20">
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </header>
+  <main class="content">
+
+    <img src="Photos/index.png" width="400.5", height="460.5">
+
+    <p>
+      Welcome to my website! Take a moment to explore and learn more about my professional journey and goals. 
+      As a dedicated Data Scientist and current PhD candidate in Mathematics, I also contribute my skills as a statistics consultant for various product 
+      development and research projects.
+      <br><br>
+      My expertise lies in stochastic processes, fueled by a deep passion for both probability and statistics. I find these disciplines fascinating, and stochastic models perfectly blend the two. My ultimate career aspiration is to inspire and educate others as a professor and researcher in statistics. Please feel free to explore the site and reach out—I’d love to connect with you!
+      <br><br>
+      In essence, I live by three guiding principles:
+      <br>
+      Family, Fun, and Focus.
+      <br>
+    </p>
+    
+
+  </main>
+
+
+  <footer>
+    <p>
+          You can, for example, never foretell what any one man will do, but you can say with precision what an average number will be up to. 
+          Individuals vary, but percentages remain constant. So says the statistician. <br>
+          -Sherlock Holmes in The Sign of Four
+  </p>
+  </footer>
+</body>
 </html>
