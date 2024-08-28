@@ -1,0 +1,149 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 26px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.right-item {
+    margin-left: 1300px;
+    /* margin-right: 0; */
+}
+
+.download-button {
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #000;
+    background-color: #ddd;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+
+.download-button:hover {
+    background-color: #ccc;
+}
+  
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Blackadder ITC';
+    src: url('fonts/BlackadderITC.ttf') format('truetype');
+}
+/* Games */
+#gamblers-ruin-container, #game-of-life-container, #random-walk-container, #craps-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+#graph-container {
+    flex: 2;
+    margin-right: 20px;
+}
+#side-container {
+    flex: 1;
+    max-width: 200px;
+}
+#grid {
+    display: grid;
+    grid-template-columns: repeat(50, 10px);
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.cell {
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+}
+.alive {
+    background-color: #000;
+}
+input[type="number"], button {
+    margin-bottom: 10px;
+}
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #CCD1D9;
+}
+canvas {
+    margin: 20px auto;
+    display: block;
+}
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.balance {
+    margin-bottom: 10px;
+}
+#dice-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+.die {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 5px;
+}
+#outcome {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+select {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+}
