@@ -5,30 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>T. R. Sumner</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    .content {
+      display: flex;
+      align-items: center;
+      gap: 50px; /* Adjust the gap as needed */
+    }
+
+    .content img {
+      flex-shrink: 0; /* Prevent the image from shrinking */
+    }
+
+    .content p {
+      max-width: 1200px; /* Set the maximum width for the paragraph */
+      margin: 0 auto; /* Center the paragraph within its container */
+      font-family: 'Helvetica', sans-serif; /* Change font type */
+      font-size: 20px; /* Change font size */
+      line-height: 1.6; /* Add line height for readability */
+    }
+
+    /* Add spacing between paragraphs */
+    .content p + p {
+      margin-top: 20px; /* Adjust spacing as needed */
+    }
+  </style>
 </head>
-
-<style>
-  .content {
-    display: flex;
-    align-items: center;
-    gap: 50px; /* Adjust the gap as needed */
-  }
-  
-  .content img {
-    flex-shrink: 0; /* Prevent the image from shrinking */
-  }
-  
-  .content p {
-    flex-grow: 1; /* Allow the paragraph to grow and take the remaining space */
-    display: flex; /* Make the paragraph a flex container */
-    align-items: center; /* Center the text vertically */
-    max-width: 1200px; /* Set the maximum width for the paragraph */
-    margin: 0 auto; /* Center the paragraph within its container */
-    font-family: 'Helvetica', sans-serif; /* Change font type */
-    font-size: 20px; /* Change font size */
-  }
-</style>
-
 <body>
   <header>
     <h1>Timothy R. Sumner</h1>
@@ -40,63 +41,39 @@
         <li><a href="games.html">Games</a></li>  
         <li class="right-item">
           <a href="mailto:sumner.tim@outlook.com?subject=Hello Tim!" target="_blank" title="Email">
-            <img src="Photos/email.png" width="25", height="25">
+            <img src="Photos/email.png" width="25" height="25">
           </a>
           <a href="https://www.linkedin.com/in/timothy-sumner/" target="_blank" title="LinkedIn"> 
-            <img src="Photos/linkedin.png" width="20", height="20">
+            <img src="Photos/linkedin.png" width="20" height="20">
           </a>
           <a href="https://medium.com/@tim.sumner" target="_blank" title="Medium"> 
-            <img src="Photos/medium.png" width="22", height="22">
+            <img src="Photos/medium.png" width="22" height="22">
           </a>
           <a href="https://github.com/sumner-tim" target="_blank" title="GitHub"> 
-            <img src="Photos/github.png" width="20", height="20">
+            <img src="Photos/github.png" width="20" height="20">
           </a>
           <a href="https://www.kaggle.com/timothysumner" target="_blank" title="Kaggle"> 
-            <img src="Photos/kaggle.png" width="48", height="20">
+            <img src="Photos/kaggle.png" width="48" height="20">
           </a>
           <a href="https://www.researchgate.net/profile/Timothy-Sumner-2/research" target="_blank" title="ResearchGate"> 
-            <img src="Photos/researchgate.png" width="20", height="20">
+            <img src="Photos/researchgate.png" width="20" height="20">
           </a>
         </li>
       </ul>
     </nav>
   </header>
   <main class="content">
-
-    <img src="Photos/index.png" width="400.5", height="460.5">
-
-    <p>
-      Welcome to my website! Take a moment to explore and learn more about my professional journey and goals. 
-      As a dedicated Data Scientist and current PhD candidate in Mathematics, I also contribute my skills as a statistics consultant for various product 
-      development and research projects.
-      
-      <br>
-      <br>
-      
-      My expertise lies in stochastic processes, fueled by a deep passion for both probability and statistics. I find these disciplines fascinating, and stochastic models perfectly blend the two. My ultimate career aspiration is to inspire and educate others as a professor and researcher in statistics. Please feel free to explore the site and reach out—I’d love to connect with you!
-      
-      <br> 
-      <br>      
-      
-      In essence, I live by three guiding principles:
-      
-      <br>
-      <br>
-      
-      Family, Fun, and Focus.
-      <br>
-    </p>
-    
-
+    <img src="Photos/index.png" width="400.5" height="460.5">
+    <div>
+      <p>Welcome to my website! Take a moment to explore and learn more about my professional journey and goals.</p>
+      <p>As a dedicated Data Scientist and current PhD candidate in Mathematics, I also contribute my skills as a statistics consultant for various product development and research projects.</p>
+      <p>My expertise lies in stochastic processes, fueled by a deep passion for both probability and statistics. I find these disciplines fascinating, and stochastic models perfectly blend the two. My ultimate career aspiration is to inspire and educate others as a professor and researcher in statistics. Please feel free to explore the site and reach out—I’d love to connect with you!</p>
+      <p>In essence, I live by three guiding principles:</p>
+      <p>Family, Fun, and Focus.</p>
+    </div>
   </main>
-
-
   <footer>
-    <p>
-          You can, for example, never foretell what any one man will do, but you can say with precision what an average number will be up to. 
-          Individuals vary, but percentages remain constant. So says the statistician. <br>
-          -Sherlock Holmes in The Sign of Four
-  </p>
+    <p>You can, for example, never foretell what any one man will do, but you can say with precision what an average number will be up to. Individuals vary, but percentages remain constant. So says the statistician. <br>-Sherlock Holmes in The Sign of Four</p>
   </footer>
 </body>
 </html>
