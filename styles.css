@@ -147,25 +147,3 @@ select {
     font-size: 16px;
     border-radius: 5px;
 }
-.content {
-  display: flex;
-  align-items: center;
-  gap: 50px; /* Adjust the gap as needed */
-}
-
-.content img {
-  flex-shrink: 0; /* Prevent the image from shrinking */
-}
-
-.content p {
-  max-width: 1200px; /* Set the maximum width for the paragraph */
-  margin: 0 auto; /* Center the paragraph within its container */
-  font-family: 'Helvetica', sans-serif; /* Change font type */
-  font-size: 20px; /* Change font size */
-  line-height: 1.6; /* Add line height for readability */
-}
-
-/* Add spacing between paragraphs */
-.content p + p {
-  margin-top: 20px; /* Adjust spacing as needed */
-}
