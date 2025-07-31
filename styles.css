@@ -56,7 +56,6 @@ footer {
     bottom: 0;
     width: 100%;
     text-align: center;
-    src: url('fonts/BlackadderITC.ttf') format('truetype');
 }
 /* Games */
 #gamblers-ruin-container, #game-of-life-container, #random-walk-container, #craps-container {
