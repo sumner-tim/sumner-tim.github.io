@@ -208,22 +208,3 @@ canvas {
 
 
 
-@media (max-width: 768px) {
-
-  /* Kill desktop column layouts */
-  .container {
-    display: block !important;
-  }
-
-  .left,
-  .right {
-    width: 100% !important;
-    margin: 0 !important;
-    padding: 0 14px;
-  }
-
-  /* Any text blocks that were constrained */
-  p, section, article {
-    max-width: 100% !important;
-  }
-}
