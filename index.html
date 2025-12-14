@@ -1,91 +1,207 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>T. R. Sumner</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    .content {
-      display: flex;
-      align-items: center;
-      gap: 50px; /* Adjust the gap as needed */
-    }
+/* styles.css */
 
-    .content img {
-      flex-shrink: 0; /* Prevent the image from shrinking */
-    }
+/* --- Base / Reset --- */
+* { box-sizing: border-box; }
 
-    .content p {
-      max-width: 1200px; /* Set the maximum width for the paragraph */
-      margin: 0 auto; /* Center the paragraph within its container */
-      font-family: 'Helvetica', sans-serif; /* Change font type */
-      font-size: 20px; /* Change font size */
-      line-height: 1.6; /* Add line height for readability */
-    }
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* prevent accidental horizontal scroll */
+}
 
-    /* Add spacing between paragraphs */
-    .content p + p {
-      margin-top: 20px; /* Adjust spacing as needed */
-    }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>Timothy R. Sumner</h1>
-    <nav>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="portfolio.html">Portfolio</a></li>
-        <li><a href="personal_life.html">Personal Life</a></li>
-        <li><a href="games.html">Games</a></li>  
-        <li class="right-item">
-          <a href="mailto:sumner.tim@outlook.com?subject=Hello Tim!" target="_blank" title="Email">
-            <img src="Photos/email.png" width="25" height="25">
-          </a>
-          <a href="https://www.linkedin.com/in/timothy-sumner/" target="_blank" title="LinkedIn"> 
-            <img src="Photos/linkedin.png" width="20" height="20">
-          </a>
-          <a href="https://medium.com/@tim.sumner" target="_blank" title="Medium"> 
-            <img src="Photos/medium.png" width="22" height="22">
-          </a>
-          <a href="https://github.com/sumner-tim" target="_blank" title="GitHub"> 
-            <img src="Photos/github.png" width="20" height="20">
-          </a>
-          <a href="https://www.kaggle.com/timothysumner" target="_blank" title="Kaggle"> 
-            <img src="Photos/kaggle.png" width="48" height="20">
-          </a>
-          <a href="https://www.researchgate.net/profile/Timothy-Sumner-2/research" target="_blank" title="ResearchGate"> 
-            <img src="Photos/researchgate.png" width="20" height="20">
-          </a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-  <main class="content">
-    <img src="Photos/index.png" width="400.5" height="460.5">
-    <div>
-      <p>
-        Welcome to my website! I invite you to explore and learn more about my professional journey and aspirations. As a Quantitative Analyst with a strong foundation in statistics, 
-        I also provide statistical consulting for various product development and research projects.
-      </p> 
-      <p>
-        I’m passionate about both Traditional Finance (TradFi) and Decentralized Finance (DeFi). TradFi’s structure and DeFi’s innovation offer unique opportunities, and I enjoy bridging these worlds 
-        through data analysis and quantitative strategies. My goal is to contribute to the evolving financial landscape by exploring how these systems can complement or disrupt each other.
-      </p>
-      <p>
-        I specialize in stochastic processes, driven by a deep passion for probability and statistics. These fields captivate me, and stochastic models represent the perfect union of both.
-        Currently, I am pursuing a PhD in Mathematics, with the long-term goal of sharing my knowledge as a professor and researcher. Feel free to browse the site and connect with me
-        —I’d love to hear from you!
-      </p>
+img, canvas {
+  max-width: 100%;
+  height: auto;
+}
 
-      <p>In essence, I live by three guiding principles:
-      <br>
-      <b>F</b>amily, <b>F</b>un, and <b>F</b>ocus.</p>
-    </div>
-  </main>
-  <footer>
-    <p>You can, for example, never foretell what any one man will do, but you can say with precision what an average number will be up to. Individuals vary, but percentages remain constant. So says the statistician. <br>-Sherlock Holmes in The Sign of Four</p>
-  </footer>
-</body>
-</html>
+/* --- Header / Nav --- */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 12px;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+nav ul li {
+  margin: 0;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #fff;
+  white-space: nowrap;
+}
+
+/* Pushes right-side items to the end without hard-coded pixels */
+.right-item {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* --- Buttons / Links --- */
+.download-button {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #000;
+  background-color: #ddd;
+  text-decoration: none;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+.download-button:hover {
+  background-color: #ccc;
+}
+
+button {
+  display: block;
+  margin: 10px auto;
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #CCD1D9;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+input[type="number"], button {
+  margin-bottom: 10px;
+}
+
+select {
+  display: block;
+  margin: 0 auto 20px auto;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* --- Footer --- */
+/* Fixed footers often cover content on mobile; default to normal flow */
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 12px;
+  width: 100%;
+  text-align: center;
+  font-family: 'Lato', sans-serif;
+  position: static;
+}
+
+/* --- Games Layout --- */
+#gamblers-ruin-container,
+#game-of-life-container,
+#random-walk-container,
+#craps-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#graph-container {
+  flex: 2;
+  margin-right: 20px;
+}
+
+#side-container {
+  flex: 1;
+  max-width: 200px;
+}
+
+/* Game of Life grid */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(50, 10px);
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.cell {
+  width: 10px;
+  height: 10px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+}
+
+.alive { background-color: #000; }
+
+canvas {
+  margin: 20px auto;
+  display: block;
+}
+
+.balance { margin-bottom: 10px; }
+
+/* Craps */
+#dice-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.die {
+  width: 50px;
+  height: 50px;
+  border: 1px solid #333;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  border-radius: 5px;
+}
+
+#outcome {
+  text-align: center;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* --- Responsive overrides --- */
+@media (max-width: 768px) {
+  header { padding: 10px 12px; }
+
+  /* If your page uses side-by-side flex containers, ensure they can wrap */
+  #graph-container { margin-right: 0; }
+  #side-container { max-width: 100%; }
+
+  /* Shrink the grid on phones to avoid overflow */
+  #grid {
+    grid-template-columns: repeat(30, 10px);
+  }
+
+  /* Containers: reduce padding for small screens */
+  #gamblers-ruin-container,
+  #game-of-life-container,
+  #random-walk-container,
+  #craps-container {
+    margin: 12px;
+    padding: 14px;
+  }
+}
