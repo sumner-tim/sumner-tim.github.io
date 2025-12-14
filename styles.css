@@ -1,210 +1,148 @@
 /* styles.css */
 
-/* --- Base / Reset --- */
-* { box-sizing: border-box; }
-
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  overflow-x: hidden; /* prevent accidental horizontal scroll */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: auto;
 }
 
-img, canvas {
-  max-width: 100%;
-  height: auto;
-}
-
-/* --- Header / Nav --- */
 header {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 12px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
 }
 
 nav ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 14px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-  margin: 0;
+    display: inline;
+    margin-right: 26px;
 }
 
 nav ul li a {
-  text-decoration: none;
-  color: #fff;
-  white-space: nowrap;
+    text-decoration: none;
+    color: #fff;
 }
 
-/* Pushes right-side items to the end without hard-coded pixels */
 .right-item {
-  margin-left: auto;
-  display: flex;
-  align-items: center;
-  gap: 12px;
+    margin-left: 1300px;
+    /* margin-right: 0; */
 }
 
-/* --- Buttons / Links --- */
 .download-button {
-  display: inline-block;
-  padding: 8px 16px;
-  font-size: 14px;
-  color: #000;
-  background-color: #ddd;
-  text-decoration: none;
-  border: 1px solid #ccc;
-  border-radius: 3px;
+    padding: 8px 16px;
+    font-size: 14px;
+    color: #000;
+    background-color: #ddd;
+    text-decoration: none;
+    border: 1px solid #ccc;
+    border-radius: 3px;
 }
 
 .download-button:hover {
-  background-color: #ccc;
+    background-color: #ccc;
 }
-
-button {
-  display: block;
-  margin: 10px auto;
-  padding: 10px 20px;
-  background-color: #333;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #CCD1D9;
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-input[type="number"], button {
-  margin-bottom: 10px;
-}
-
-select {
-  display: block;
-  margin: 0 auto 20px auto;
-  padding: 10px 20px;
-  font-size: 16px;
-  border-radius: 5px;
-}
-
-/* --- Footer --- */
-/* Fixed footers often cover content on mobile; default to normal flow */
+  
 footer {
-  background-color: #333;
-  color: #fff;
-  padding: 10px 12px;
-  width: 100%;
-  text-align: center;
-  font-family: 'Lato', sans-serif;
-  position: static;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
 }
-
-/* --- Games Layout --- */
-#gamblers-ruin-container,
-#game-of-life-container,
-#random-walk-container,
-#craps-container {
-  max-width: 1000px;
-  margin: 20px auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+/* Games */
+#gamblers-ruin-container, #game-of-life-container, #random-walk-container, #craps-container {
+    max-width: 1000px;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-
 #graph-container {
-  flex: 2;
-  margin-right: 20px;
+    flex: 2;
+    margin-right: 20px;
 }
-
 #side-container {
-  flex: 1;
-  max-width: 200px;
+    flex: 1;
+    max-width: 200px;
 }
-
-/* Game of Life grid */
 #grid {
-  display: grid;
-  grid-template-columns: repeat(50, 10px);
-  justify-content: center;
-  margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: repeat(50, 10px);
+    justify-content: center;
+    margin-bottom: 20px;
 }
-
 .cell {
-  width: 10px;
-  height: 10px;
-  border: 1px solid #ccc;
-  background-color: #fff;
+    width: 10px;
+    height: 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
 }
-
-.alive { background-color: #000; }
-
+.alive {
+    background-color: #000;
+}
+input[type="number"], button {
+    margin-bottom: 10px;
+}
+button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #CCD1D9;
+}
 canvas {
-  margin: 20px auto;
-  display: block;
+    margin: 20px auto;
+    display: block;
 }
-
-.balance { margin-bottom: 10px; }
-
-/* Craps */
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+.balance {
+    margin-bottom: 10px;
+}
 #dice-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 20px;
-  flex-wrap: wrap;
-  gap: 10px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
-
 .die {
-  width: 50px;
-  height: 50px;
-  border: 1px solid #333;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  border-radius: 5px;
+    width: 50px;
+    height: 50px;
+    border: 1px solid #333;
+    margin: 0 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px;
+    border-radius: 5px;
 }
-
 #outcome {
-  text-align: center;
-  font-size: 20px;
-  margin-bottom: 20px;
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 20px;
 }
-
-/* --- Responsive overrides --- */
-@media (max-width: 768px) {
-  header { padding: 10px 12px; }
-
-  /* If your page uses side-by-side flex containers, ensure they can wrap */
-  #graph-container { margin-right: 0; }
-  #side-container { max-width: 100%; }
-
-  /* Shrink the grid on phones to avoid overflow */
-  #grid {
-    grid-template-columns: repeat(30, 10px);
-  }
-
-  /* Containers: reduce padding for small screens */
-  #gamblers-ruin-container,
-  #game-of-life-container,
-  #random-walk-container,
-  #craps-container {
-    margin: 12px;
-    padding: 14px;
-  }
+select {
+    display: block;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
 }
-
-
-
